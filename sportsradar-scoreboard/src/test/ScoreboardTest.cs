@@ -28,6 +28,12 @@ public class ScoreboardTest
     [Fact]
     public void ShouldUpdateScore()
     {
+        var scoreboard = new Scoreboard();
+        scoreboard.StartMatch(homeTeam: TEAM_1, awayTeam: TEAM_2);
+        Assert.Equal("1. Slovenia 0 - Slovakia 0", scoreboard.GetInProgressSummary());
+        
+        scoreboard.UpdateScore(homeTeam: TEAM_1, awayTeam: TEAM_2, homeTeamScore: 1, awayTeamScore: 0);
+        Assert.Equal("1. Slovenia 1 - Slovakia 0", scoreboard.GetInProgressSummary());
     }
 
     [Fact]

@@ -25,14 +25,21 @@ public class Scoreboard
         return result;
     }
 
+    public void UpdateScore(Team homeTeam, Team awayTeam, int homeTeamScore, int awayTeamScore)
+    {
+        foreach (var match in ongoingMatches.Where(match => match.TeamPresent(homeTeam) && match.TeamPresent(awayTeam)))
+        {
+            match.UpdateScore(homeTeamScore, awayTeamScore);
+        }
+    }
+
     private void ThrowExceptionIfOneOfTeamsIsAlreadyPlaying(Team homeTeam, Team awayTeam)
     {
         if (IsTeamCurrentlyPlaying(homeTeam))
-            throw new ArgumentException($"Home team is already playing: {homeTeam.GetTeamName()}");
-        
-        if (IsTeamCurrentlyPlaying(awayTeam))
-            throw new ArgumentException($"Away team is already playing: {awayTeam.GetTeamName()}");
+            throw new ArgumentException($"Home team is already playing: {homeTeam.TeamName}");
 
+        if (IsTeamCurrentlyPlaying(awayTeam))
+            throw new ArgumentException($"Away team is already playing: {awayTeam.TeamName}");
     }
 
     private bool IsTeamCurrentlyPlaying(Team team1)

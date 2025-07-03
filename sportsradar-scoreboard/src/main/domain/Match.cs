@@ -20,8 +20,14 @@ public class Match
         return team == homeTeam || team == awayTeam;
     }
 
+    public void UpdateScore(int homeTeamScore, int awayTeamScore)
+    {
+        this.homeTeamScore = homeTeamScore;
+        this.awayTeamScore = awayTeamScore;
+    }
+
     public override string ToString()
     {
-        return $"{homeTeam.GetTeamName()} {homeTeamScore} - {awayTeam.GetTeamName()} {awayTeamScore}";
+        return $"{homeTeam.TeamName} {homeTeamScore} - {awayTeam.TeamName} {awayTeamScore}";
     }
 }
