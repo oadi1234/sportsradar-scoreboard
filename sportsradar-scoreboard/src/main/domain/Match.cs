@@ -2,12 +2,12 @@ namespace sportsradar_scoreboard.main.domain;
 
 public class Match
 {
-    private Team homeTeam;
-    private Team awayTeam;
+    private string homeTeam;
+    private string awayTeam;
     private int homeTeamScore;
     private int awayTeamScore;
 
-    public Match(Team homeTeam, Team awayTeam)
+    public Match(string homeTeam, string awayTeam)
     {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
@@ -15,7 +15,11 @@ public class Match
         awayTeamScore = 0;
     }
 
-    public bool TeamPresent(Team team)
+    public Match()
+    {
+    }
+
+    public bool TeamPresent(string team)
     {
         return team == homeTeam || team == awayTeam;
     }
@@ -28,6 +32,6 @@ public class Match
 
     public override string ToString()
     {
-        return $"{homeTeam.TeamName} {homeTeamScore} - {awayTeam.TeamName} {awayTeamScore}";
+        return $"{homeTeam} {homeTeamScore} - {awayTeam} {awayTeamScore}";
     }
 }
