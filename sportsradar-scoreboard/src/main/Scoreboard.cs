@@ -27,9 +27,20 @@ public class Scoreboard
 
     public void UpdateScore(Team homeTeam, Team awayTeam, int homeTeamScore, int awayTeamScore)
     {
-        foreach (var match in ongoingMatches.Where(match => match.TeamPresent(homeTeam) && match.TeamPresent(awayTeam)))
+        CheckIfScoreIsCorrect(homeTeamScore);
+        CheckIfScoreIsCorrect(awayTeamScore);
+        
+        var match = ongoingMatches.Single(match => match.TeamPresent(homeTeam) && match.TeamPresent(awayTeam));
+        
+        match.UpdateScore(homeTeamScore, awayTeamScore);
+        
+    }
+
+    private void CheckIfScoreIsCorrect(int score)
+    {
+        if (score < 0)
         {
-            match.UpdateScore(homeTeamScore, awayTeamScore);
+            throw new ArgumentException("Score cannot be negative");
         }
     }
 
