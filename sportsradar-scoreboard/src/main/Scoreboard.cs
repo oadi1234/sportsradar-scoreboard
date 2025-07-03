@@ -1,4 +1,5 @@
 using sportsradar_scoreboard.main.domain;
+using sportsradar_scoreboard.main.utils;
 
 namespace sportsradar_scoreboard.main;
 
@@ -16,29 +17,31 @@ public class Scoreboard
     {
         var result = "";
         var summaryPosition = 1;
+        ongoingMatches.Sort(new MatchComparer());
+
         foreach (var match in ongoingMatches)
         {
-            result += summaryPosition + ". " + match;
+            result += summaryPosition + ". " + match + Environment.NewLine;
             summaryPosition++;
         }
 
-        return result;
+        return result.TrimEnd();
     }
 
     public void UpdateScore(string homeTeam, string awayTeam, int homeTeamScore, int awayTeamScore)
     {
         CheckIfScoreIsCorrect(homeTeamScore);
         CheckIfScoreIsCorrect(awayTeamScore);
-        
+
         var match = ongoingMatches.Single(match => match.TeamPresent(homeTeam) && match.TeamPresent(awayTeam));
-        
+
         match.UpdateScore(homeTeamScore, awayTeamScore);
-        
     }
 
     public bool FinishMatch(string homeTeam, string awayTeam)
     {
-        var match = ongoingMatches.SingleOrDefault(match => match.TeamPresent(homeTeam) && match.TeamPresent(awayTeam), new Match());
+        var match = ongoingMatches.SingleOrDefault(match => match.TeamPresent(homeTeam) && match.TeamPresent(awayTeam),
+            new Match());
         return ongoingMatches.Remove(match);
     }
 

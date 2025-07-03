@@ -73,14 +73,19 @@ public class ScoreboardTest
     public void ShouldPrintSummaryInCorrectOrder()
     {
         var scoreboard = new Scoreboard();
+        // Mexico 0 - Canada 5
         scoreboard.StartMatch(homeTeam: TEAM_MEXICO, awayTeam: TEAM_CANADA);
         scoreboard.UpdateScore(homeTeam: TEAM_MEXICO, awayTeam: TEAM_CANADA, 0, 5);
+        // Spain 10 - Brazil 2
         scoreboard.StartMatch(homeTeam: TEAM_SPAIN, awayTeam: TEAM_BRAZIL);
         scoreboard.UpdateScore(homeTeam: TEAM_SPAIN, awayTeam: TEAM_BRAZIL, 10, 2);
+        // Germany 2 - France 2
         scoreboard.StartMatch(homeTeam: TEAM_GERMANY, awayTeam: TEAM_FRANCE);
         scoreboard.UpdateScore(homeTeam: TEAM_GERMANY, awayTeam: TEAM_FRANCE, 2, 2);
+        // Uruguay 6 - Italy 6
         scoreboard.StartMatch(homeTeam: TEAM_URUGUAY, awayTeam: TEAM_ITALY);
         scoreboard.UpdateScore(homeTeam: TEAM_URUGUAY, awayTeam: TEAM_ITALY, 6, 6);
+        // Argentina 3 - Australia 1
         scoreboard.StartMatch(homeTeam: TEAM_ARGENTINA, awayTeam: TEAM_AUSTRALIA);
         scoreboard.UpdateScore(homeTeam: TEAM_ARGENTINA, awayTeam: TEAM_AUSTRALIA, 3, 1);
         

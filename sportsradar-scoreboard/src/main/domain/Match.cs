@@ -7,12 +7,15 @@ public class Match
     private int homeTeamScore;
     private int awayTeamScore;
 
+    private DateTime createdAt;
+
     public Match(string homeTeam, string awayTeam)
     {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         homeTeamScore = 0;
         awayTeamScore = 0;
+        createdAt = DateTime.Now;
     }
 
     public Match()
@@ -28,6 +31,16 @@ public class Match
     {
         this.homeTeamScore = homeTeamScore;
         this.awayTeamScore = awayTeamScore;
+    }
+
+    public int GetTotalScore()
+    {
+        return homeTeamScore + awayTeamScore;
+    }
+
+    public DateTime CreatedAt()
+    {
+        return createdAt;
     }
 
     public override string ToString()
