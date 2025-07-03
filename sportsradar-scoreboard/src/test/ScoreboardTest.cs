@@ -95,4 +95,17 @@ public class ScoreboardTest
                      "4. Argentina 3 - Australia 1" + Environment.NewLine +
                      "5. Germany 2 - France 2", scoreboard.GetInProgressSummary());
     }
+    
+    [Fact]
+    public void ShouldOnlyUpdateOneScore()
+    {
+        var scoreboard = new Scoreboard();
+        
+        scoreboard.StartMatch(homeTeam: TEAM_SLOVENIA, awayTeam: TEAM_SLOVAKIA);
+        scoreboard.StartMatch(homeTeam: TEAM_GERMANY, awayTeam: TEAM_FRANCE);
+        
+        scoreboard.UpdateScore(homeTeam: TEAM_GERMANY, awayTeam: TEAM_FRANCE, homeTeamScore: 2, awayTeamScore: 2);
+        Assert.Equal("1. Germany 2 - France 2" + Environment.NewLine +
+                     "2. Slovenia 0 - Slovakia 0", scoreboard.GetInProgressSummary());
+    }
 }
