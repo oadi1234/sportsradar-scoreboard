@@ -15,6 +15,11 @@ public class Match
         awayTeamScore = 0;
     }
 
+    public bool TeamPresent(Team team)
+    {
+        return team == homeTeam || team == awayTeam;
+    }
+
     public override string ToString()
     {
         return $"{homeTeam.GetTeamName()} {homeTeamScore} - {awayTeam.GetTeamName()} {awayTeamScore}";

@@ -7,6 +7,7 @@ public class ScoreboardTest
 {
     private static readonly Team TEAM_1 = new("Slovenia", "SLO");
     private static readonly Team TEAM_2 = new("Slovakia", "SVK");
+    private static readonly Team TEAM_3 = new("Australia", "AUS");
     
     [Fact]
     public void ShouldStartNewMatch()
@@ -17,8 +18,11 @@ public class ScoreboardTest
     }
     
     [Fact]
-    public void ShouldNotStartMatchWithTeamAlreadyPresentOnScoreboard()
+    public void ShouldNotStartMatchWhenTeamAlreadyPlaying()
     {
+        var scoreboard = new Scoreboard();
+        scoreboard.StartMatch(TEAM_1, TEAM_2);
+        Assert.Throws<ArgumentException>(() => scoreboard.StartMatch(TEAM_3, TEAM_2));
     }
     
     [Fact]

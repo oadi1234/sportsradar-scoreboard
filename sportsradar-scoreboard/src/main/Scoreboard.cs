@@ -8,6 +8,8 @@ public class Scoreboard
 
     public void StartMatch(Team homeTeam, Team awayTeam)
     {
+        if (IsOneOfTeamsCurrentlyPlaying(homeTeam, awayTeam))
+            throw new ArgumentException("One of the teams already present");
         ongoingMatches.Add(new Match(homeTeam, awayTeam));
     }
 
@@ -22,5 +24,10 @@ public class Scoreboard
         }
 
         return result;
+    }
+
+    private bool IsOneOfTeamsCurrentlyPlaying(Team team1, Team team2)
+    {
+        return ongoingMatches.Any(match => match.TeamPresent(team1) || match.TeamPresent(team2));
     }
 }
