@@ -13,14 +13,14 @@ public class Scoreboard
 
     public string GetInProgressSummary()
     {
-        var debugString = "";
-        var i = 1;
+        var result = "";
+        var summaryPosition = 1;
         foreach (var match in ongoingMatches)
         {
-            debugString += i + ". " + match;
-            i++;
+            result += summaryPosition + ". " + match;
+            summaryPosition++;
         }
 
-        return debugString;
+        return result;
     }
 }

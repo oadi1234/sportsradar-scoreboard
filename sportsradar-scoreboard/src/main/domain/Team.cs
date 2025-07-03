@@ -11,8 +11,8 @@ public class Team
         this.teamShortName = teamShortName;
     }
 
-    public string GetShortName()
+    public string GetTeamName()
     {
-        return teamShortName;
+        return teamName;
     }
 }
