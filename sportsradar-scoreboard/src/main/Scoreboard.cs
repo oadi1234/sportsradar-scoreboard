@@ -8,8 +8,7 @@ public class Scoreboard
 
     public void StartMatch(Team homeTeam, Team awayTeam)
     {
-        if (IsOneOfTeamsCurrentlyPlaying(homeTeam, awayTeam))
-            throw new ArgumentException("One of the teams already present");
+        ThrowExceptionIfOneOfTeamsIsAlreadyPlaying(homeTeam, awayTeam);
         ongoingMatches.Add(new Match(homeTeam, awayTeam));
     }
 
@@ -26,8 +25,18 @@ public class Scoreboard
         return result;
     }
 
-    private bool IsOneOfTeamsCurrentlyPlaying(Team team1, Team team2)
+    private void ThrowExceptionIfOneOfTeamsIsAlreadyPlaying(Team homeTeam, Team awayTeam)
     {
-        return ongoingMatches.Any(match => match.TeamPresent(team1) || match.TeamPresent(team2));
+        if (IsTeamCurrentlyPlaying(homeTeam))
+            throw new ArgumentException($"Home team is already playing: {homeTeam.GetTeamName()}");
+        
+        if (IsTeamCurrentlyPlaying(awayTeam))
+            throw new ArgumentException($"Away team is already playing: {awayTeam.GetTeamName()}");
+
+    }
+
+    private bool IsTeamCurrentlyPlaying(Team team1)
+    {
+        return ongoingMatches.Any(match => match.TeamPresent(team1));
     }
 }
