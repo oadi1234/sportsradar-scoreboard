@@ -1,4 +1,7 @@
-﻿namespace sportsradar_scoreboard.test;
+﻿using sportsradar_scoreboard.main;
+using sportsradar_scoreboard.main.domain;
+
+namespace sportsradar_scoreboard.test;
 
 public class ScoreboardTest
 {
